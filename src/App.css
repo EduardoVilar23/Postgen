@@ -1,7 +1,27 @@
 .App {
-  text-align: center;
+  margin: 0;
+  background-color: #393e41;
+  height: 100vh;
 }
-
+.menu {
+  background-color: #e94f37;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.titleMenu {
+  color: #f6f7eb;
+  font-size: 20pt;
+  font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: -0.03em;
+}
+/* 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +55,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
