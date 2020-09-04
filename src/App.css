@@ -10,6 +10,7 @@
   transition: 200ms;
   height: 100%;
   width: 100%;
+  background-color: #000;
 }
 ::placeholder {
   color: rgba(255, 255, 255, 0.7);
@@ -18,11 +19,11 @@
 .App {
   /* background-image: url("assets/guillaume-techer-hiLwKcCAsj4-unsplash.jpg"); */
   /* background-image: url("https://images.unsplash.com/photo-1502639346902-d5a99dab5c40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1055&q=80"); */
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
   transition: 200ms;
-  height: 100vh;
+  height: 100%;
   width: 100%;
-  padding-top: 3em;
+  padding-top: 1em;
   background-attachment: fixed;
   /* backdrop-filter: blur(1em); */
 }
@@ -128,6 +129,7 @@ label {
   height: 30vw;
   border-radius: 0.5em;
   overflow: hidden;
+  box-shadow: 0 1em 1em rgba(0, 0, 0, 0.25);
 }
 .credits {
   display: flex;
@@ -150,7 +152,7 @@ span {
   transition: 200ms;
 }
 .downloadBtn {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   padding: 1em;
   margin: 0.5em;
   border-radius: 0.5em;
@@ -163,4 +165,19 @@ span {
 }
 .username {
   backdrop-filter: blur(0.7em);
+}
+.loadingView {
+  backdrop-filter: blur(1em);
+  color: #fff;
+  transition: 200ms;
+  position: fixed;
+  z-index: 9;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
