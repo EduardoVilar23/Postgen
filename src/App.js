@@ -88,7 +88,6 @@ function App() {
               className="item"
               style={{
                 backgroundImage: "url(" + imageLink + ")",
-                backgroundAttachment: "fixed",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center center",
@@ -129,8 +128,8 @@ function App() {
                     className="username"
                     style={{
                       position: "absolute",
-                      bottom: "7em",
                       padding: "0.5em",
+                      bottom: "1em",
                       backgroundColor: "rgba(255, 255, 255, 0.25)",
                       borderRadius: "0.5em",
                     }}
