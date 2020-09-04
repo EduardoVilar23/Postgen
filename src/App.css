@@ -1,10 +1,27 @@
-.App {
+.AppBackground {
   margin: 0;
-  background-color: #393e41;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
   height: 100vh;
+  overflow: hidden;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  cursor: default;
+  transition: 200ms;
+}
+::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 1;
+}
+.App {
+  /* background-image: url("assets/guillaume-techer-hiLwKcCAsj4-unsplash.jpg"); */
+  /* background-image: url("https://images.unsplash.com/photo-1502639346902-d5a99dab5c40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1055&q=80"); */
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: 200ms;
 }
 .menu {
-  background-color: #e94f37;
+  background-color: rgba(255, 255, 255, 0.2);
   top: 0;
   left: 0;
   right: 0;
@@ -13,46 +30,127 @@
   align-items: center;
   padding-left: 1em;
   padding-right: 1em;
+  backdrop-filter: blur(1em);
 }
 .titleMenu {
-  color: #f6f7eb;
+  color: #fff;
   font-size: 20pt;
   font-weight: bold;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   letter-spacing: -0.03em;
 }
-/* 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.contentView {
+  padding: 1em;
+  color: #f6f6f6;
+  display: flex;
+  flex-direction: row;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.leftSideView {
+  width: 50vw;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 1em;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.topMessage {
+  display: flex;
+  margin: 1em;
+  font-size: 17pt;
+  font-weight: bold;
+  justify-content: center;
+}
+.previewView {
+  width: 50vw;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.fraseInput {
+  width: 50vw;
+  max-width: 50vw;
+  min-width: 50vw;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+.inputText {
+  border-radius: 0.5em;
+  border: none;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  text-indent: 0.5em;
+  width: 100%;
+  font-size: 12pt;
+  margin-top: 1em;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(1em);
+  transition: 200ms;
+}
+.inputColor {
+  border-radius: 0.5em;
+  border: none;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  text-indent: 0.5em;
+  width: 10em;
+  margin-right: 1em;
+  font-size: 12pt;
+  margin-top: 1em;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(1em);
+  transition: 200ms;
+}
+.inputText:focus {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(1em);
+  color: #000;
+}
+.inputText:focus::placeholder {
+  color: rgba(0, 0, 0, 0.7);
+}
+label {
+  color: rgba(255, 255, 255, 0.7);
+}
+.item {
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(1em);
+  height: 30em;
+  width: 30em;
+  border-radius: 0.5em;
+  overflow: hidden;
+}
+.credits {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(1em);
+  padding: 1em;
+  border-radius: 0 0.5em 0 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-decoration: none;
+  color: #fff;
+}
+.website {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+span {
+  transition: 200ms;
+}
+.downloadBtn {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 1em;
+  margin: 0.5em;
+  border-radius: 0.5em;
+  backdrop-filter: blur(1em);
+  cursor: pointer;
+  transition: 200ms;
+}
+.downloadBtn:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.username {
+  backdrop-filter: blur(0.7em);
+}
