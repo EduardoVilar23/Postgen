@@ -123,18 +123,22 @@ function App() {
                 >
                   {text}
                 </span>
-                <span
-                  className="username"
-                  style={{
-                    position: "absolute",
-                    bottom: "7em",
-                    padding: "0.5em",
-                    backgroundColor: "rgba(255, 255, 255, 0.25)",
-                    borderRadius: "0.5em",
-                  }}
-                >
-                  {username}
-                </span>
+                {username ? (
+                  <span
+                    className="username"
+                    style={{
+                      position: "absolute",
+                      bottom: "7em",
+                      padding: "0.5em",
+                      backgroundColor: "rgba(255, 255, 255, 0.25)",
+                      borderRadius: "0.5em",
+                    }}
+                  >
+                    {username}
+                  </span>
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
             <a className="downloadBtn">Baixar</a>
