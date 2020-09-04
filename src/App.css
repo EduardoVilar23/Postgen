@@ -104,7 +104,7 @@
   transition: 200ms;
 }
 .inputText:focus {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(1em);
   color: #000;
 }
