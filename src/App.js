@@ -88,6 +88,7 @@ function App() {
               className="item"
               style={{
                 backgroundImage: "url(" + imageLink + ")",
+                backgroundAttachment: "fixed",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center center",
@@ -95,8 +96,8 @@ function App() {
             >
               <div
                 style={{
-                  width: "30em",
-                  height: "30em",
+                  width: "100%",
+                  height: "100%",
                   borderRadius: "0.5em",
                   overflow: "hidden",
                   display: "flex",
@@ -156,51 +157,5 @@ function App() {
     </div>
   );
 }
-
-const Item = (itens) => {
-  return (
-    <div
-      className="item"
-      style={{
-        backgroundImage: "url(" + itens.imageLink + ")",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center center",
-        width: "30em",
-        height: "30em",
-        borderRadius: "0.5em",
-        overflow: "hidden",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-    >
-      <span
-        style={{
-          margin: "3em",
-          fontSize: 28,
-          textAlign: "center",
-          fontWeight: "bold",
-          color: itens.textColor,
-          textShadow: itens.shadows
-            ? "0 0.2em 0.5em rgba(0, 0, 0, 0.75)"
-            : "none",
-        }}
-      >
-        {itens.text}
-      </span>
-      <span
-        className="username"
-        style={{
-          position: "absolute",
-          bottom: "7em",
-        }}
-      >
-        {itens.username}
-      </span>
-    </div>
-  );
-};
 
 export default App;
