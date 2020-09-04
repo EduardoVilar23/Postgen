@@ -34,6 +34,7 @@
   padding-left: 1em;
   padding-right: 1em;
   backdrop-filter: blur(1em);
+  z-index: 9;
 }
 .titleMenu {
   color: #fff;
@@ -117,8 +118,9 @@ label {
 .item {
   background-color: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(1em);
-  height: 30em;
-  width: 30em;
+  position: relative;
+  width: 30vw;
+  height: 30vw;
   border-radius: 0.5em;
   overflow: hidden;
 }
