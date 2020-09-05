@@ -21,7 +21,7 @@
   /* background-image: url("https://images.unsplash.com/photo-1502639346902-d5a99dab5c40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1055&q=80"); */
   background-color: rgba(0, 0, 0, 0.5);
   transition: 200ms;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   padding-top: 1em;
   background-attachment: fixed;
@@ -69,6 +69,10 @@
   justify-content: center;
 }
 .previewView {
+  position: fixed;
+  right: 0;
+  top: 2%;
+  bottom: 0;
   width: 50vw;
   margin: 1em;
   padding: 1em;
@@ -93,7 +97,7 @@
   margin-top: 1em;
   color: #fff;
   background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(1em);
+  backdrop-filter: blur(3em);
   transition: 200ms;
 }
 .inputColor {
@@ -136,10 +140,12 @@ label {
   background-color: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(1em);
   padding: 1em;
-  border-radius: 0 0.5em 0 0;
+  border-radius: 0 0 0 0.5em;
   position: fixed;
-  bottom: 0;
-  left: 0;
+  /* bottom: 0; */
+  top: 0;
+  z-index: 10;
+  right: 0;
   text-decoration: none;
   color: #fff;
 }
@@ -168,11 +174,41 @@ span {
 }
 .loadingView {
   backdrop-filter: blur(1em);
+  padding-left: 1em;
+  padding-right: 1em;
   color: #fff;
   transition: 200ms;
   position: fixed;
   z-index: 9;
   display: flex;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.button {
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  backdrop-filter: saturate(0);
+  padding: 1em;
+  border-radius: 1em;
+  transition: 500ms;
+}
+.button:hover {
+  backdrop-filter: saturate(50);
+}
+.warnView {
+  backdrop-filter: blur(1em);
+  padding-left: 1em;
+  padding-right: 1em;
+  color: #fff;
+  transition: 200ms;
+  position: fixed;
+  z-index: 9;
+  display: none;
   top: 0;
   bottom: 0;
   left: 0;

@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Slide } from "react-toastify";
+import BrowserDetection from "react-browser-detection";
 
 function App() {
   const [text, setText] = useState();
@@ -9,8 +13,18 @@ function App() {
   const [username, setUsername] = useState();
   const [textColor, setTextColor] = useState();
   const [shadows, setShadows] = useState(false);
+  const [logo, setLogo] = useState("");
+  const [logoWidth, setLogoWidth] = useState(10);
+  const [roundCorners, setRoundCorners] = useState(0);
   const [darkBackground, setDarkBackground] = useState(true);
+  const [warnMessage, setWarnMessage] = useState();
   const [loading, setLoading] = useState({ opacity: 1, display: "flex" });
+
+  const browserHandler = {
+    chrome: () => "chrome",
+    googlebot: () => "googlebot",
+    default: (browser) => browser,
+  };
 
   const reloadImage = () => {
     startLoad();
@@ -33,6 +47,10 @@ function App() {
       setLoading({ opacity: 0, display: "none" });
     }, 100);
   };
+
+  const dimiss = () => {
+    setWarnMessage("none");
+  };
   return (
     <div
       className="AppBackground"
@@ -48,7 +66,7 @@ function App() {
         </div>
         <div className="contentView">
           <div className="leftSideView">
-            <span className="topMessage">
+            <span className="topMessage" role="img" aria-label="festa">
               🎉 Faça posts incríveis para suas redes sociais!
             </span>
             <form>
@@ -72,6 +90,27 @@ function App() {
               </label>
               <br />
               <input
+                placeholder="Sua logo"
+                className="inputText"
+                onChange={(event) => {
+                  setLogo(event.target.value);
+                }}
+              />
+              <label>
+                Insira o link da sua logo (funciona melhor com arquivos .png)
+              </label>
+              <br />
+              <input
+                type="range"
+                placeholder="Sua logo"
+                className="inputText"
+                onChange={(event) => {
+                  setLogoWidth(event.target.value);
+                }}
+              />
+              <label>Ajuste o tamanho da logo</label>
+              <br />
+              <input
                 placeholder="Seu @username"
                 className="inputText"
                 onChange={(event) => setUsername(event.target.value)}
@@ -86,6 +125,14 @@ function App() {
                 onChange={(e) => setTextColor(e.target.value)}
               />
               <label>Selecione a cor do texto</label>
+              <br />
+              <input
+                type="range"
+                value={roundCorners}
+                className="inputText"
+                style={{ marginTop: "2em" }}
+                onChange={(e) => setRoundCorners(e.target.value)}
+              />
               <br />
               <input
                 type="checkbox"
@@ -180,9 +227,26 @@ function App() {
                 ) : (
                   <></>
                 )}
+                <img
+                  alt={logo ? "logo" : ""}
+                  style={{
+                    width: `${logoWidth}%`,
+                    position: "absolute",
+                    bottom: 0,
+                    right: 0,
+                    padding: 10,
+                    borderRadius: `${roundCorners}px`,
+                  }}
+                  src={logo}
+                />
               </div>
             </div>
-            <a className="downloadBtn greenBtn">⬇️ Baixar</a>
+            <a
+              className="downloadBtn greenBtn"
+              onClick={() => toast.error("😕 Ainda não é possível baixar.")}
+            >
+              ⬇️ Baixar
+            </a>
             <a className="downloadBtn blueBtn" onClick={() => reloadImage()}>
               🔄 Trocar imagem
             </a>
@@ -206,14 +270,29 @@ function App() {
         }}
       >
         <h1>Carregando...</h1>
-        <Loader
-          type="TailSpin"
-          color="#00BFFF"
-          height={40}
-          width={40}
-          color="#fff"
-        />
+        <Loader type="TailSpin" height={40} width={40} color="#fff" />
       </div>
+      <div className="warnView" style={{ display: warnMessage }}>
+        <h1>
+          <BrowserDetection>{browserHandler}</BrowserDetection>
+        </h1>
+        <span className="button" onClick={() => dimiss()}>
+          🥱 Dispensar
+        </span>
+      </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        hideProgressBar
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        transition={Slide}
+      />
     </div>
   );
 }
