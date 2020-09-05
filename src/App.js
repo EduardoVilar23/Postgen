@@ -24,14 +24,14 @@ function App() {
     setLoading({ opacity: 0, display: "flex" });
     setTimeout(() => {
       setLoading({ opacity: 1, display: "flex" });
-    }, 40);
+    }, 100);
   };
 
   const stopLoad = () => {
     setLoading({ opacity: 0, display: "flex" });
     setTimeout(() => {
       setLoading({ opacity: 0, display: "none" });
-    }, 40);
+    }, 100);
   };
   return (
     <div
@@ -139,7 +139,6 @@ function App() {
                 style={{
                   width: "100%",
                   height: "100%",
-                  borderRadius: "0.5em",
                   overflow: "hidden",
                   display: "flex",
                   justifyContent: "center",
