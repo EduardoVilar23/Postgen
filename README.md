@@ -1,3 +1,16 @@
+# Postgen 🎉
+
+- Postgen é um projeto de código aberto. Esta ferramenta possibilita criar imagens para redes sociais.
+- A ferramenta foi criada com React JS.
+- Projeto iniciado em 3 de setembro de 2020
+- Até o atual momento, a ferramenta apresenta problemas de desempenho no Google Chrome, e funciona estavelmente no Safari(V.13.1.2)
+- O site ainda não gera as imagens para que possam ser compartilhadas.
+# Live view ✨
+
+[Clique aqui para abrir o site 🎉](http://postgen.now.sh/)
+
+![](https://img.shields.io/github/watchers/eduardovilar23/postgen?style=social) 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
