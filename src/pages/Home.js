@@ -104,10 +104,6 @@ function Home() {
                   startLoad();
                   setImageLink(event.target.value);
                 }}
-                onSubmit={(event) => {
-                  startLoad();
-                  setImageLink(event.target.value);
-                }}
               />
               <label>
                 Para um melhor resultado, não use o sistema de imagens
@@ -301,7 +297,6 @@ function Home() {
         style={{
           display: loading.display,
           opacity: loading.opacity,
-          backgroundColor: "rgba(0, 0, 0, 0.90)",
         }}
       >
         <h1>Carregando...</h1>

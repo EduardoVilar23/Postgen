@@ -25,6 +25,7 @@
   padding-top: 1em;
   background-attachment: fixed;
   backdrop-filter: blur(3em) saturate(5);
+  cursor: default;
 }
 .menu {
   position: fixed;
@@ -47,6 +48,7 @@
   font-weight: bold;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   letter-spacing: -0.03em;
+  cursor: pointer;
 }
 .contentView {
   padding: 1em;
@@ -167,7 +169,7 @@ span {
   backdrop-filter: blur(1em);
 }
 .username {
-  backdrop-filter: blur(0.7em);
+  backdrop-filter: blur(0.7em) saturate(5);
 }
 .loadingView {
   padding-left: 1em;
@@ -184,7 +186,8 @@ span {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  backdrop-filter: blur(1em);
+  backdrop-filter: blur(3em);
+  background-color: rgba(0, 0, 0, 0.9);
 }
 .button {
   background-color: rgba(255, 255, 255, 0.2);
