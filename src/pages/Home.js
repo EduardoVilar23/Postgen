@@ -12,11 +12,11 @@ function Home() {
   const [text, setText] = useState();
   const [imageLink, setImageLink] = useState("https://picsum.photos/1024/1024");
   const [username, setUsername] = useState();
-  const [textColor, setTextColor] = useState();
+  const [textColor, setTextColor] = useState("#fff");
   const [shadows, setShadows] = useState(false);
   const [logo, setLogo] = useState("");
-  const [logoWidth, setLogoWidth] = useState(10);
-  const [roundCorners, setRoundCorners] = useState(0);
+  const [logoWidth, setLogoWidth] = useState(60);
+  const [roundCorners, setRoundCorners] = useState(20);
   const [darkBackground, setDarkBackground] = useState(true);
   const [warnMessage, setWarnMessage] = useState();
   const [loading, setLoading] = useState({ opacity: 1, display: "flex" });
@@ -24,7 +24,7 @@ function Home() {
 
   const history = useHistory();
 
-  const values = [
+  const values = {
     text,
     imageLink,
     username,
@@ -34,7 +34,7 @@ function Home() {
     logoWidth,
     roundCorners,
     darkBackground,
-  ];
+  };
 
   const browserHandler = {
     chrome: () => "chrome",
@@ -112,15 +112,13 @@ function Home() {
               </label>
               <br />
               <input
-                placeholder="Sua logo"
+                placeholder="Imagem de destaque"
                 className="inputText"
                 onChange={(event) => {
                   setLogo(event.target.value);
                 }}
               />
-              <label>
-                Insira o link da sua logo (funciona melhor com arquivos .png)
-              </label>
+              <label>Insira o link da sua imagem de destaque</label>
               <br />
               <input
                 type="range"
@@ -131,7 +129,7 @@ function Home() {
                   setLogoWidth(event.target.value);
                 }}
               />
-              <label>Ajuste o tamanho da logo</label>
+              <label>Ajuste o tamanho da imagem de destaque</label>
               <br />
               <input
                 placeholder="Seu @username"
@@ -197,7 +195,7 @@ function Home() {
               }}
               onProgress={(e) => alert(e.target.value)}
             />
-            <div
+            {/* <div
               className="item"
               style={{
                 backgroundImage: "url(" + imageLink + ")",
@@ -222,11 +220,8 @@ function Home() {
                 }}
               >
                 <span
+                  className="contentText"
                   style={{
-                    margin: "3em",
-                    fontSize: 28,
-                    textAlign: "center",
-                    fontWeight: "bold",
                     color: textColor,
                     textShadow: shadows
                       ? "0 0.3em 0.5em rgba(0, 0, 0, 0.75)"
@@ -238,14 +233,14 @@ function Home() {
                 {username ? (
                   <span
                     className="username"
-                    style={{
-                      position: "absolute",
-                      padding: "0.5em",
-                      bottom: "1em",
-                      backgroundColor: "rgba(255, 255, 255, 0.25)",
-                      borderRadius: "0.5em",
-                      zIndex: 7,
-                    }}
+                    // style={{
+                    //   position: "absolute",
+                    //   padding: "0.5em",
+                    //   bottom: "1em",
+                    //   backgroundColor: "rgba(255, 255, 255, 0.25)",
+                    //   borderRadius: "0.5em",
+                    //   zIndex: 7,
+                    // }}
                   >
                     {username}
                   </span>
@@ -265,6 +260,55 @@ function Home() {
                     }}
                     src={logo}
                   />
+                ) : (
+                  <></>
+                )}
+              </div>
+            </div> */}
+            <div
+              className="item"
+              style={{
+                backgroundImage: `url(${imageLink})`,
+              }}
+            >
+              <div
+                className="filter"
+                style={{
+                  backgroundColor: darkBackground
+                    ? "rgba(0, 0, 0, 0.50)"
+                    : "transparent",
+                }}
+              >
+                {text ? (
+                  <span
+                    className="contentText"
+                    style={{
+                      color: textColor,
+                      textShadow: shadows
+                        ? "0 0.3em 0.5em rgba(0, 0, 0, 0.75)"
+                        : "none",
+                    }}
+                  >
+                    {text}
+                  </span>
+                ) : (
+                  <></>
+                )}
+
+                {logo ? (
+                  <img
+                    src={logo}
+                    className="logo"
+                    style={{
+                      width: `${logoWidth}%`,
+                      borderRadius: `${roundCorners}px`,
+                    }}
+                  />
+                ) : (
+                  <></>
+                )}
+                {username ? (
+                  <span className="username">{username}</span>
                 ) : (
                   <></>
                 )}

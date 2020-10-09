@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Loader from "react-loader-spinner";
 import { useHistory, useLocation } from "react-router-dom";
+import html2canvas from "html2canvas";
 import "../App.css";
 
 export default function ReadyImage() {
   const { data } = useLocation();
   const [loading, setLoading] = useState({ opacity: 1, display: "flex" });
-
+  const [finalImage, setFinalImage] = useState("");
+  const [alreadyRendered, setAlreadyRendered] = useState(false);
   const history = useHistory();
 
   const startLoad = () => {
@@ -22,6 +24,48 @@ export default function ReadyImage() {
       setLoading({ opacity: 0, display: "none" });
     }, 100);
   };
+
+  // const renderImage = () => {
+  //   html2canvas(document.getElementById("item"), { allowTaint: true }).then(
+  //   // html2canvas(document.getElementById("item")).then((canvas) => {
+  //     document.body.appendChild(canvas);
+  //   });
+  //   setTimeout(() => {
+  //     let canvas = document.querySelector("canvas");
+  //     let dataURL = canvas.toDataURL();
+  //     console.log(dataURL);
+  //     setFinalImage(dataURL);
+  //     setAlreadyRendered(true);
+  //   }, 300);
+  // };
+
+  const renderImage = () => {
+    html2canvas(document.getElementById("item"), { allowTaint: true }).then(
+      (canvas) => {
+        document.body.appendChild(canvas);
+      }
+    );
+    // html2canvas(document.getElementById("item")).then((canvas) => {
+    //   document.body.appendChild(canvas);
+    // });
+    // setTimeout(() => {
+    //   let canvas = document.querySelector("canvas");
+    //   let dataURL = canvas.toDataURL();
+    //   console.log(dataURL);
+    //   setFinalImage(dataURL);
+    //   setAlreadyRendered(true);
+    // }, 300);
+  };
+
+  const saveImage = () => {
+    if (alreadyRendered === true) {
+      console.log(finalImage);
+      // history.push({ pathname: finalImage });
+    } else {
+      renderImage();
+    }
+  };
+
   if (data) {
     return (
       <div
@@ -48,81 +92,87 @@ export default function ReadyImage() {
             backgroundColor: "rgba(255, 255, 255, 0.7)",
           }}
         >
+          {alreadyRendered ? (
+            <div className="downloadRenderedImage">
+              <a href={finalImage} download={`postgen_${data.username}.jpg`}>
+                <span>Baixar</span>
+              </a>
+            </div>
+          ) : (
+            <></>
+          )}
+          <div
+            className="downloadRenderedImage"
+            style={{ right: "10em" }}
+            onClick={() => saveImage()}
+          >
+            <span>Renderizar</span>
+          </div>
           <h1>Sucesso! ✅</h1>
           <div
             className="item"
+            id="item"
             style={{
-              backgroundImage: "url(" + data[1] + ")",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center center",
-              borderRadius: "0.3em",
+              backgroundImage: `url(${data.imageLink})`,
+              borderRadius: 0,
             }}
           >
             <div
+              className="filter"
               style={{
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-                backgroundColor: data[8]
+                backgroundColor: data.darkBackground
                   ? "rgba(0, 0, 0, 0.50)"
                   : "transparent",
-                transition: "200ms",
               }}
             >
-              <img
-                src={data[1]}
-                onLoad={() => stopLoad()}
-                style={{ display: "none" }}
-              />
-              <span
-                style={{
-                  margin: "3em",
-                  fontSize: 28,
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  color: data[3] ? data[3] : "#fff",
-                  textShadow: data[4]
-                    ? "0 0.3em 0.5em rgba(0, 0, 0, 0.75)"
-                    : "none",
-                }}
-              >
-                {data[0]}
-              </span>
-              {data[2] ? (
+              {data.text ? (
                 <span
-                  className="username"
+                  className="contentText"
                   style={{
-                    position: "absolute",
-                    padding: "0.5em",
-                    bottom: "1em",
-                    backgroundColor: "rgba(255, 255, 255, 0.25)",
-                    borderRadius: "0.5em",
-                    zIndex: 7,
-                    color: "#fff",
+                    color: data.textColor,
+                    textShadow: data.shadows
+                      ? "0 0.3em 0.5em rgba(0, 0, 0, 0.75)"
+                      : "none",
                   }}
                 >
-                  {data[2]}
+                  {data.text}
                 </span>
               ) : (
                 <></>
               )}
-              {data[5] ? (
-                <img
-                  alt={data[5] ? "logo" : ""}
+
+              {data.logo ? (
+                <div
+                  className="logoRender"
                   style={{
-                    width: `${data[6]}%`,
-                    position: "absolute",
-                    bottom: 0,
-                    right: 0,
-                    padding: 10,
-                    borderRadius: `${data[7]}px`,
+                    width: `${data.logoWidth}%`,
+                    height: `${data.logoWidth}%`,
+                    borderRadius: `${data.roundCorners}px`,
+                    backgroundImage: `url(${data.logo})`,
                   }}
-                  src={data[5]}
                 />
+              ) : (
+                <></>
+              )}
+              {/* {data.logo ? (
+                <img
+                  src={data.logo}
+                  className="logo"
+                  style={{
+                    width: `${data.logoWidth}%`,
+                    borderRadius: `${data.roundCorners}px`,
+                  }}
+                />
+              ) : (
+                <></>
+              )} */}
+              <img
+                src={`${data.imageLink}`}
+                style={{ display: "none" }}
+                onLoad={() => stopLoad()}
+              />
+              {data.username ? (
+                <span className="username">{data.username}</span>
               ) : (
                 <></>
               )}
@@ -130,29 +180,33 @@ export default function ReadyImage() {
           </div>
           <h1>Dados da imagem:</h1>
           <span>
-            Conteúdo: {data[0] ? `"${data[0]}"` : "Nenhum texto adicionado"}
+            Conteúdo: {data.text ? `"${data.text}"` : "Nenhum texto adicionado"}
           </span>{" "}
           <br />
-          <span>Imagem de fundo: {data[1]}</span> <br />
+          <span>Imagem de fundo: {data.imageLink}</span> <br />
           <span>
-            Username: {data[2] ? `"${data[2]}"` : "Nenhum texto adicionado"}
+            Username:{" "}
+            {data[2] ? `"${data.username}"` : "Nenhum texto adicionado"}
           </span>{" "}
           <br />
-          <span>Cor do texto: {data[3] ? data[3] : "#fff"}</span> <br />
           <span>
-            Sombras: {data[4] === true ? "Ativadas" : "Desativadas"}
+            Cor do texto: {data.textColor ? data.textColor : "#fff"}
+          </span>{" "}
+          <br />
+          <span>
+            Sombras: {data.shadow === true ? "Ativadas" : "Desativadas"}
           </span>{" "}
           <br />
           <span>
             Logo:{" "}
-            {data[5].length ? `"${data[5]}"` : "Nenhuma imagem adicionada"}
+            {data.logo.length ? `"${data.logo}"` : "Nenhuma imagem adicionada"}
           </span>
           <br />
-          <span>Tamanho da logo: {data[6]}%</span>
+          <span>Tamanho da logo: {data.logoWidth}%</span>
           <br />
-          <span>Suavidez das bordas da logo: {data[7]}%</span> <br />
+          <span>Suavidez das bordas da logo: {data.roundCorners}%</span> <br />
           <span>
-            Possui fundo escuro: {data[8] === true ? "Sim" : "Não"}
+            Possui fundo escuro: {data.darkBackground === true ? "Sim" : "Não"}
           </span>{" "}
           <br />
           <br />
