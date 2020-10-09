@@ -50,7 +50,7 @@ function Home() {
         setImageLink(DefaultImage);
         setChangeSize(1024);
       } else {
-        setImageLink("https://source.unsplash.com/random/1080x1080?sig=1");
+        setImageLink(DefaultImage);
         setChangeSize(1080);
       }
     }, 2000);
@@ -108,7 +108,7 @@ function Home() {
               />
               <br/>
               <label>
-                Insira o link de uma imagem.
+                Insira o link de uma imagem, funciona melhor com imagens de proporção 1:1.
               </label>
               <br />
               <input
