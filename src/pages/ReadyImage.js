@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Loader from "react-loader-spinner";
 import { useHistory, useLocation } from "react-router-dom";
 import html2canvas from "html2canvas";
+import Canvas2Image from "canvas2image";
 import "../App.css";
 
 export default function ReadyImage() {
@@ -40,21 +41,21 @@ export default function ReadyImage() {
   // };
 
   const renderImage = () => {
-    html2canvas(document.getElementById("item"), { allowTaint: true }).then(
-      (canvas) => {
-        document.body.appendChild(canvas);
-      }
-    );
-    // html2canvas(document.getElementById("item")).then((canvas) => {
-    //   document.body.appendChild(canvas);
-    // });
-    // setTimeout(() => {
-    //   let canvas = document.querySelector("canvas");
-    //   let dataURL = canvas.toDataURL();
-    //   console.log(dataURL);
-    //   setFinalImage(dataURL);
-    //   setAlreadyRendered(true);
-    // }, 300);
+    // html2canvas(document.getElementById("item"), { allowTaint: true }).then(
+    //   (canvas) => {
+    //     document.body.appendChild(canvas);
+    //   }
+    // );
+    html2canvas(document.getElementById("item")).then((canvas) => {
+      document.body.appendChild(canvas);
+    });
+    setTimeout(() => {
+      let canvas = document.querySelector("canvas");
+      let dataURL = canvas.toDataURL();
+      console.log(dataURL);
+      setFinalImage(dataURL);
+      setAlreadyRendered(true);
+    }, 300);
   };
 
   const saveImage = () => {
