@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Loader from "react-loader-spinner";
 import { useHistory, useLocation } from "react-router-dom";
 import html2canvas from "html2canvas";
-import Canvas2Image from "canvas2image";
 import "../App.css";
+import { Slide, toast, ToastContainer } from "react-toastify";
 
 export default function ReadyImage() {
   const { data } = useLocation();
@@ -26,36 +26,27 @@ export default function ReadyImage() {
     }, 100);
   };
 
-  // const renderImage = () => {
-  //   html2canvas(document.getElementById("item"), { allowTaint: true }).then(
-  //   // html2canvas(document.getElementById("item")).then((canvas) => {
-  //     document.body.appendChild(canvas);
-  //   });
-  //   setTimeout(() => {
-  //     let canvas = document.querySelector("canvas");
-  //     let dataURL = canvas.toDataURL();
-  //     console.log(dataURL);
-  //     setFinalImage(dataURL);
-  //     setAlreadyRendered(true);
-  //   }, 300);
-  // };
 
   const renderImage = () => {
-    // html2canvas(document.getElementById("item"), { allowTaint: true }).then(
-    //   (canvas) => {
-    //     document.body.appendChild(canvas);
-    //   }
-    // );
-    html2canvas(document.getElementById("item")).then((canvas) => {
-      document.body.appendChild(canvas);
-    });
+    toast.info('Renderizando, aguarde...', {autoClose: 2700})
+    html2canvas(document.getElementById("item"), { allowTaint: true, proxy: true, useCORS: true }).then(
+      (canvas) => {
+        document.body.appendChild(canvas);
+        document.querySelector('canvas').style.filter = 'blur(1em)'
+      }
+    );
     setTimeout(() => {
-      let canvas = document.querySelector("canvas");
-      let dataURL = canvas.toDataURL();
+      document.querySelector('canvas').style.filter = 'blur(0.5em)'
+    }, 2500);
+    setTimeout(() => {
+      document.querySelector('canvas').style.filter = 'blur(0em)'
+      const canvas = document.querySelector("canvas");
+      const dataURL = canvas.toDataURL();
       console.log(dataURL);
       setFinalImage(dataURL);
       setAlreadyRendered(true);
-    }, 300);
+      toast.success('Imagem pronta para download!')
+    }, 3000);
   };
 
   const saveImage = () => {
@@ -103,8 +94,7 @@ export default function ReadyImage() {
             <></>
           )}
           <div
-            className="downloadRenderedImage"
-            style={{ right: "10em" }}
+            className="renderImage"
             onClick={() => saveImage()}
           >
             <span>Renderizar</span>
@@ -114,10 +104,11 @@ export default function ReadyImage() {
             className="item"
             id="item"
             style={{
-              backgroundImage: `url(${data.imageLink})`,
+              // backgroundImage: `url(${data.imageLink})`,
               borderRadius: 0,
             }}
           >
+            <img src={data.imageLink} style={{objectFit: 'cover'}} className="backgroundImageImg" />
             <div
               className="filter"
               style={{
@@ -142,7 +133,7 @@ export default function ReadyImage() {
                 <></>
               )}
 
-              {data.logo ? (
+              {/* {data.logo ? (
                 <div
                   className="logoRender"
                   style={{
@@ -154,19 +145,27 @@ export default function ReadyImage() {
                 />
               ) : (
                 <></>
-              )}
-              {/* {data.logo ? (
+              )} */}
+              {data.logo ? (
+                <div
+                style={{
+                  width: `${data.logoWidth}%`,
+                  borderRadius: `${data.roundCorners}px`,
+                  overflow: 'hidden'
+                }}
+                >
                 <img
                   src={data.logo}
                   className="logo"
                   style={{
-                    width: `${data.logoWidth}%`,
-                    borderRadius: `${data.roundCorners}px`,
+                    // width: `${data.logoWidth}%`,
+                    // borderRadius: `${data.roundCorners}px`,
                   }}
-                />
+                />  
+                </div>
               ) : (
                 <></>
-              )} */}
+              )}
               <img
                 src={`${data.imageLink}`}
                 style={{ display: "none" }}
@@ -221,6 +220,8 @@ export default function ReadyImage() {
             <Loader type="TailSpin" height={40} width={40} color="#fff" />
           </div>
         </div>
+                
+        <ToastContainer/>
       </div>
     );
   } else {

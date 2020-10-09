@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import "../App.css";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Slide } from "react-toastify";
 import BrowserDetection from "react-browser-detection";
 import { Link, useHistory } from "react-router-dom";
+import DefaultImage from '../assets/mike-meyers-IJyXoyGmiZY-unsplash.jpg'
 
 function Home() {
   const [text, setText] = useState();
-  const [imageLink, setImageLink] = useState("https://picsum.photos/1024/1024");
+  const [imageLink, setImageLink] = useState(DefaultImage);
   const [username, setUsername] = useState();
   const [textColor, setTextColor] = useState("#fff");
   const [shadows, setShadows] = useState(false);
@@ -22,6 +21,7 @@ function Home() {
   const [loading, setLoading] = useState({ opacity: 1, display: "flex" });
   const [changeSize, setChangeSize] = useState(1080);
 
+  
   const history = useHistory();
 
   const values = {
@@ -47,10 +47,10 @@ function Home() {
     setImageLink("");
     setTimeout(() => {
       if (changeSize === 1080) {
-        setImageLink("https://picsum.photos/1024/1024");
+        setImageLink(DefaultImage);
         setChangeSize(1024);
       } else {
-        setImageLink("https://picsum.photos/1080/1080");
+        setImageLink("https://source.unsplash.com/random/1080x1080?sig=1");
         setChangeSize(1080);
       }
     }, 2000);
@@ -96,6 +96,7 @@ function Home() {
                 className="fraseInput inputText"
                 onChange={(event) => setText(event.target.value)}
               />
+              <br/>
               <label>Este será o principal conteúdo do seu post.</label> <br />
               <input
                 placeholder="Imagem de fundo"
@@ -105,10 +106,9 @@ function Home() {
                   setImageLink(event.target.value);
                 }}
               />
+              <br/>
               <label>
-                Para um melhor resultado, não use o sistema de imagens
-                aleatórias. Insira o link da imagem que deve preencher o fundo
-                do post.
+                Insira o link de uma imagem.
               </label>
               <br />
               <input
@@ -118,6 +118,7 @@ function Home() {
                   setLogo(event.target.value);
                 }}
               />
+              <br/>
               <label>Insira o link da sua imagem de destaque</label>
               <br />
               <input
@@ -173,7 +174,7 @@ function Home() {
                 onChange={(e) => setDarkBackground(e.target.checked)}
               />
               <label onClick={(e) => setDarkBackground(!darkBackground)}>
-                Escurecer fundo
+                Escurecer fundo (Recomendado)
               </label>
             </form>
           </div>
@@ -277,6 +278,7 @@ function Home() {
                   backgroundColor: darkBackground
                     ? "rgba(0, 0, 0, 0.50)"
                     : "transparent",
+                    borderRadius: '1em'
                 }}
               >
                 {text ? (
@@ -322,9 +324,6 @@ function Home() {
             >
               ⬇️ Renderizar Imagem
             </a>
-            <a className="downloadBtn blueBtn" onClick={() => reloadImage()}>
-              🔄 Trocar imagem
-            </a>
           </div>
         </div>
         <div className="credits">
@@ -354,19 +353,6 @@ function Home() {
           🥱 Dispensar
         </span>
       </div>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        hideProgressBar
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        transition={Slide}
-      />
     </div>
   );
 }
