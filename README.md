@@ -3,7 +3,7 @@
 - Esta ferramenta possibilita criar imagens para redes sociais.
 - A ferramenta foi criada com React JS.
 - Projeto iniciado em 3 de setembro de 2020
-- Até o atual momento, a ferramenta apresenta problemas de desempenho no Google Chrome, e funciona estavelmente no Safari(V.13.1.2)
+- Até o atual momento, a ferramenta apresenta problemas durante a rederização da imagem final no Google Chrome, e funciona estavelmente no Safari(V.13.1.2)
 - O site já é capaz de renderizar imagens e as exportar em formato JPG.
 # Live view ✨
 
