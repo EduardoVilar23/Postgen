@@ -4,7 +4,7 @@
 - A ferramenta foi criada com React JS.
 - Projeto iniciado em 3 de setembro de 2020
 - Até o atual momento, a ferramenta apresenta problemas de desempenho no Google Chrome, e funciona estavelmente no Safari(V.13.1.2)
-- O site ainda não gera as imagens para que possam ser compartilhadas.
+- O site já é capaz de renderizar imagens e as exportar em formato JPG.
 # Live view ✨
 
 [Clique aqui para abrir o site 🎉](http://postgen.now.sh/)
