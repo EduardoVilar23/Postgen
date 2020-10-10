@@ -95,7 +95,7 @@ export default function ReadyImage() {
           )}
           <div
             className="renderImage"
-            onClick={() => saveImage()}
+            onClick={() => renderImage()}
           >
             <span>Renderizar</span>
           </div>
@@ -125,6 +125,8 @@ export default function ReadyImage() {
                     textShadow: data.shadows
                       ? "0 0.3em 0.5em rgba(0, 0, 0, 0.75)"
                       : "none",
+                      fontSize: `${data.contentFontSize}pt`,
+                      fontFamily: data.selectedFont,
                   }}
                 >
                   {data.text}
@@ -181,6 +183,14 @@ export default function ReadyImage() {
           <h1>Dados da imagem:</h1>
           <span>
             Conteúdo: {data.text ? `"${data.text}"` : "Nenhum texto adicionado"}
+          </span>{" "}
+          <br />
+          <span>
+            Tamanho da fonte: {data.contentFontSize}
+          </span>{" "}
+          <br />
+          <span>
+            Estilo de fonte selecionada: {data.selectedFont}
           </span>{" "}
           <br />
           <span>Imagem de fundo: {data.imageLink}</span> <br />

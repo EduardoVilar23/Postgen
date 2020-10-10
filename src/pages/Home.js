@@ -3,12 +3,14 @@ import "../App.css";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "react-toastify/dist/ReactToastify.css";
-import BrowserDetection from "react-browser-detection";
 import { Link, useHistory } from "react-router-dom";
 import DefaultImage from '../assets/mike-meyers-IJyXoyGmiZY-unsplash.jpg'
+import { Select } from "antd";
+import 'antd/dist/antd.css'
 
 function Home() {
   const [text, setText] = useState();
+  const [contentFontSize, setContentFontSize] = useState();
   const [imageLink, setImageLink] = useState(DefaultImage);
   const [username, setUsername] = useState();
   const [textColor, setTextColor] = useState("#fff");
@@ -23,6 +25,49 @@ function Home() {
 
   
   const history = useHistory();
+  const { Option } = Select;
+
+  const fonts = [
+    {
+      value: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen',
+      text: 'Padrão',
+    },
+    {
+      value: 'Poppins',
+      text: 'Poppins',
+    },
+    {
+      value: 'Dancing Script',
+      text: 'Dancing Script',
+    },
+    {
+      value: 'Anton',
+      text: 'Anton',
+    }, 
+    {
+      value: 'Amatic SC',
+      text: 'Amatic SC',
+    }, 
+    {
+      value: 'Berkshire Swash',
+      text: 'Berkshire Swash',
+    }, 
+    {
+      value: 'Syne',
+      text: 'Syne',
+    }, 
+    {
+      value: 'Paytone One',
+      text: 'Paytone One',
+    }, 
+    {
+      value: 'Aladin',
+      text: 'Aladin',
+    } 
+  ]
+
+  const [selectedFont, setSelectedFont] = useState(`"${fonts[0].value}"`);
+
 
   const values = {
     text,
@@ -34,12 +79,8 @@ function Home() {
     logoWidth,
     roundCorners,
     darkBackground,
-  };
-
-  const browserHandler = {
-    chrome: () => "chrome",
-    googlebot: () => "googlebot",
-    default: (browser) => browser,
+    contentFontSize,
+    selectedFont,
   };
 
   const reloadImage = () => {
@@ -98,6 +139,34 @@ function Home() {
               />
               <br/>
               <label>Este será o principal conteúdo do seu post.</label> <br />
+              <input
+                type="range"
+                value={contentFontSize}
+                min={10}
+                placeholder="Tamanho da fonte"
+                className="inputText"
+                onChange={(event) => {
+                  setContentFontSize(event.target.value);
+                }}
+              />
+              <br/>
+              <label>Ajuste o tamanho da fonte.</label>
+              <br />
+              <br />
+              <Select
+              labelInValue
+              placeholder="Selecione o estilo de fonte"
+              filterOption={false}
+              style={{ width: '100%' }}
+              onChange={(e) => setSelectedFont(`"${e.value}"`)}
+              >
+                {fonts.map(d => (
+                  <Option key={d.value} style={{fontFamily: `"${d.value}"`}}>{d.text}</Option>
+                ))}
+              </Select>
+              <br/>
+              <label>Selecione o estilo que mais agradar você.</label>
+              <br />
               <input
                 placeholder="Imagem de fundo"
                 className="inputText"
@@ -270,6 +339,7 @@ function Home() {
               className="item"
               style={{
                 backgroundImage: `url(${imageLink})`,
+                boxShadow: '0 0.5em 1em rgba(0, 0, 0, 0.3)'
               }}
             >
               <div
@@ -289,6 +359,8 @@ function Home() {
                       textShadow: shadows
                         ? "0 0.3em 0.5em rgba(0, 0, 0, 0.75)"
                         : "none",
+                        fontSize: `${contentFontSize}pt`,
+                        fontFamily: selectedFont,
                     }}
                   >
                     {text}
@@ -343,11 +415,10 @@ function Home() {
         }}
       >
         <h1>Carregando...</h1>
-        <Loader type="TailSpin" height={40} width={40} color="#fff" />
+        <Loader type="TailSpin" height={40} width={40} color="#000" />
       </div>
       <div className="warnView" style={{ display: warnMessage }}>
         <h1>
-          <BrowserDetection>{browserHandler}</BrowserDetection>
         </h1>
         <span className="button" onClick={() => dimiss()}>
           🥱 Dispensar

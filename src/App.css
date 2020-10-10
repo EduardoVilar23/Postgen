@@ -159,12 +159,14 @@ label {
 }
 .credits {
   display: flex;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 0.5em;
   backdrop-filter: blur(1em);
   padding: 1em;
   position: fixed;
-  /* bottom: 0; */
-  top: 0;
+  bottom: 0;
+  /* top: 0; */
+  margin: 0.3em;
   z-index: 10;
   right: 0;
   text-decoration: none;
@@ -190,7 +192,7 @@ span {
   backdrop-filter: blur(1em);
 }
 .contentText {
-  transition: 300ms;
+  transition: 100ms;
   margin: 0.3em;
   font-size: 23pt;
   text-align: center;
@@ -198,6 +200,7 @@ span {
 }
 .logo {
   width: 100%;
+  transition: 100ms;
 }
 .logoRender {
   bottom: 0;
@@ -222,7 +225,7 @@ span {
 .loadingView {
   padding-left: 1em;
   padding-right: 1em;
-  color: #fff;
+  color: #fff !important;
   transition: 200ms;
   position: fixed;
   z-index: 9;
@@ -235,7 +238,7 @@ span {
   align-items: center;
   flex-direction: column;
   backdrop-filter: blur(3em);
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 .button {
   background-color: rgba(255, 255, 255, 0.2);
@@ -283,7 +286,7 @@ span {
   transition: 300ms;
   color: #fff;
   right: 0;
-  bottom: 3.5em;
+  bottom: 4em;
   background-color: rgb(31, 168, 3);
   padding: 1em;
   border-radius: 0.7em;
@@ -311,6 +314,9 @@ canvas {
   box-shadow: 0, 0.5em 1em rgba(0, 0, 0, 0.3);
   border-radius: 0;
 } */
+a {
+  color: #fff !important;
+}
 @media only screen and (max-width: 600px) {
   .item {
     /* width: 20em;
