@@ -29,25 +29,29 @@ export default function ReadyImage() {
 
 
   const renderImage = () => {
-    toast.info('Renderizando, aguarde...', {autoClose: 2700})
-    html2canvas(document.getElementById("item"), { allowTaint: true, proxy: true, useCORS: true }).then(
-      (canvas) => {
-        document.body.appendChild(canvas);
-        document.querySelector('canvas').style.filter = 'blur(1em)'
-      }
-    );
-    setTimeout(() => {
-      document.querySelector('canvas').style.filter = 'blur(0.5em)'
-    }, 2500);
-    setTimeout(() => {
-      document.querySelector('canvas').style.filter = 'blur(0em)'
-      const canvas = document.querySelector("canvas");
-      const dataURL = canvas.toDataURL();
-      console.log(dataURL);
-      setFinalImage(dataURL);
-      setAlreadyRendered(true);
-      toast.success('Imagem pronta para download!')
-    }, 3000);
+      toast.info('Renderizando, aguarde...', {autoClose: 2700})
+      html2canvas(document.getElementById("item"), { allowTaint: true, proxy: true, useCORS: true }).then(
+        (canvas) => {
+          document.body.appendChild(canvas);
+          document.querySelector('canvas').style.filter = 'blur(1em)'
+        }
+      );
+      setTimeout(() => {
+        if(document.querySelector('canvas') !== null){
+        document.querySelector('canvas').style.filter = 'blur(0.5em)'
+        }
+      }, 2500);
+      setTimeout(() => {
+        if(document.querySelector('canvas') !== null) {
+        document.querySelector('canvas').style.filter = 'blur(0em)'
+        const canvas = document.querySelector("canvas");
+        const dataURL = canvas.toDataURL();
+        console.log(dataURL);
+        setFinalImage(dataURL);
+        setAlreadyRendered(true);
+        toast.success('Imagem pronta para download!')
+        }
+      }, 3000);
   };
 
   const saveImage = () => {
@@ -246,27 +250,29 @@ export default function ReadyImage() {
         }}
       >
         <div
-          className="App"
+          className="App blurBackground"
           style={{
-            backgroundColor: "rgba(255, 255, 255, 0.7)",
             width: "100%",
             height: "100vh",
+            margin: 0,
+            padding: 0,
             justifyContent: "center",
             alignItems: "center",
             display: "flex",
-            flexDirection: "column",
-            margin: 0,
-            padding: 0,
           }}
         >
+          <div
+          className="errorPage"
+          >
           <h1>Esta página expirou :(</h1>
           <span
             className="titleMenu"
-            style={{ color: "rgba(0, 0, 0, 0.7)", fontSize: "17pt" }}
+            style={{ color: "rgba(255, 2555, 255, 0.7)", fontSize: "17pt" }}
             onClick={() => history.push({ pathname: "/" })}
           >
             Postgen
           </span>
+          </div>
         </div>
       </div>
     );

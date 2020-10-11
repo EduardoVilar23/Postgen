@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../App.css";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -27,13 +27,20 @@ function Home() {
   const [loading, setLoading] = useState({ opacity: 1, display: "flex" });
   const [changeSize, setChangeSize] = useState(1080);
 
+  useEffect(() => {
+    if(document.querySelector('canvas') !== null) {
+      document.querySelector('canvas').remove()
+    }
+     
+  }, [])
   
   const history = useHistory();
   const { Option } = Select;
 
   const fonts = [
     {
-      value: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen',
+      value: `"Myriad-Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`,
       text: 'Padrão',
     },
     {
@@ -67,7 +74,31 @@ function Home() {
     {
       value: 'Aladin',
       text: 'Aladin',
-    } 
+    }, 
+    {
+      value: 'Kaushan Script',
+      text: 'Kaushan Script',
+    },
+    {
+      value: 'Reenie Beanie',
+      text: 'Reenie Beanie',
+    }, 
+    {
+      value: 'Patrick Hand SC',
+      text: 'Patrick Hand SC',
+    }, 
+    {
+      value: 'Bebas Neue',
+      text: 'Bebas Neue',
+    },
+    {
+      value: 'Press Start 2P',
+      text: 'Press Start 2P',
+    },
+    {
+      value: 'Bangers',
+      text: 'Bangers',
+    }
   ]
 
   const [selectedFont, setSelectedFont] = useState(`"${fonts[0].value}"`);
@@ -156,9 +187,13 @@ function Home() {
               <br />
               <br />
               <Select
+              showSearch
               labelInValue
               placeholder="Selecione o estilo de fonte"
-              filterOption={false}
+              filterOption={(input, option) => 
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+              notFoundContent="Não há fontes correspondentes"
               style={{ width: '100%' }}
               onChange={(e) => setSelectedFont(`"${e.value}"`)}
               >

@@ -31,9 +31,9 @@ export default function Menu() {
               Preços
             </span>
             </Link>
-            <Link>
+            <Link to="/contact">
             <span>
-              Render
+              Contato
             </span>
             </Link>
           </div>

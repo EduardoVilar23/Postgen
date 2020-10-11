@@ -4,7 +4,7 @@ import Menu from "../Components/Menu";
 import Home from "../pages/Home";
 import Pricing from "../pages/Pricing";
 import ReadyImage from "../pages/ReadyImage";
-import Report from "../pages/Report";
+import Contact from "../pages/Contact";
 
 export default function Router() {
   return (
@@ -13,7 +13,7 @@ export default function Router() {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/render" exact component={ReadyImage} />
-        <Route path="/report" exact component={Report} />
+        <Route path="/contact" exact component={Contact} />
         <Route path="/pricing" exact component={Pricing} />
       </Switch>
     </BrowserRouter>

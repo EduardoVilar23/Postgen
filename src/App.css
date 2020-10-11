@@ -50,6 +50,11 @@
   text-align: center;
   font-size: 17pt;
 }
+.inputCustom {
+  width: 20em !important;
+  border-radius: 0.5em 0.5em 0 0 !important;
+  padding: 0.5em !important;
+}
 .App {
   background-color: rgba(255, 255, 255, 0.7);
   transition: 200ms;
@@ -59,6 +64,23 @@
   background-attachment: fixed;
   /* backdrop-filter: blur(3em) saturate(5); */
   cursor: default;
+}
+.blurBackground {
+  background-color: rgba(255, 255, 255, 0) !important;
+  /* backdrop-filter: blur(20px) saturate(180%); */
+}
+.errorPage {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 2em;
+  border-radius: 1em;
+  backdrop-filter: blur(20px) saturate(180%);
+}
+.errorPage h1 {
+  color: #fff;
 }
 .menu {
   position: fixed;
@@ -358,7 +380,7 @@ span {
 .renderImage {
   position: fixed;
   transition: 300ms;
-  color: #000;
+  color: #fff;
   right: 0;
   bottom: 4em;
   background-color: rgb(31, 168, 3);
@@ -400,7 +422,7 @@ label {
   justify-content: space-between;
   padding-left: 10em;
   padding-right: 10em;
-  margin-bottom: 15em;
+  margin-bottom: 5em;
 }
 .cardPrice {
   width: 30em;
@@ -408,7 +430,7 @@ label {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
   border-style: solid;
   border-width: 0.1em;
   border-color: rgba(0, 0, 0, 0.1);
@@ -418,13 +440,17 @@ label {
 }
 .cardPriceTop {
   padding: 1em;
-  margin-top: 25%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 .cardPrice h1 {
   font-family: "Myriad-Pro-Bold";
 }
 .buyBtn {
-  width: 30em;
+  width: 100%;
   height: 3em;
   justify-content: center;
   align-items: center;
@@ -434,9 +460,41 @@ label {
   bottom: 0;
   max-width: 30em;
   bottom: 0em;
-  border-radius: 0 0 0.4em 0.4em;
   cursor: pointer;
   bottom: -3em;
+  transition: 700ms;
+  background-repeat: no-repeat;
+  background-size: 2em;
+  background-position: -2.4em center;
+  background-image: url("./assets/buy-btn.svg");
+  transition-timing-function: cubic-bezier(1, 0, 0, 1);
+}
+.buyBtn:hover {
+  background-position: 2em center;
+}
+.buyBtn:hover img {
+  transform: scale(1.5);
+  opacity: 1;
+  position: relative;
+}
+@media only screen and (max-width: 1260px) {
+  .pricesPageFormat {
+    padding-top: 10em;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .arroundPrices {
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15em;
+    justify-content: center;
+    align-items: center;
+  }
+  .cardPrice {
+    margin-bottom: 2em;
+  }
 }
 @media only screen and (max-width: 600px) {
   .item {
@@ -479,22 +537,5 @@ label {
   }
   .inputText {
     max-width: 90vw;
-  }
-  .pricesPageFormat {
-    padding-top: 10em;
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .arroundPrices {
-    padding-left: 0;
-    padding-right: 0;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15em;
-    justify-content: center;
-    align-items: center;
-  }
-  .cardPrice {
-    margin-bottom: 2em;
   }
 }
