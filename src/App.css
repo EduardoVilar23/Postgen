@@ -41,7 +41,7 @@
   font-family: "Myriad-Pro-Bold";
 }
 .proWord {
-  background: url("https://i.pinimg.com/originals/f9/f4/93/f9f493e99f9ee825b30acdd0bc37befb.jpg");
+  background: url("./assets/f9f493e99f9ee825b30acdd0bc37befb.jpg");
   background-size: cover;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
