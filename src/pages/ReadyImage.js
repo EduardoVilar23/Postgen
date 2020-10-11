@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import html2canvas from "html2canvas";
 import "../App.css";
 import { Slide, toast, ToastContainer } from "react-toastify";
+import Menu from "../Components/Menu";
 
 export default function ReadyImage() {
   const { data } = useLocation();
@@ -68,14 +69,6 @@ export default function ReadyImage() {
           maxWidth: "100vw",
         }}
       >
-        <div className="menu" style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}>
-          <span
-            className="titleMenu"
-            onClick={() => history.push({ pathname: "/" })}
-          >
-            Postgen
-          </span>
-        </div>
         <div
           className="App"
           style={{

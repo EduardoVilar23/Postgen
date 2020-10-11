@@ -7,6 +7,10 @@ import { Link, useHistory } from "react-router-dom";
 import DefaultImage from '../assets/mike-meyers-IJyXoyGmiZY-unsplash.jpg'
 import { Select } from "antd";
 import 'antd/dist/antd.css'
+import TextLogo from '../assets/logo-text.png'
+import IconLogo from '../assets/icon-logo.png'
+import IconLogoBlack from '../assets/icon-logo-black.png'
+import Menu from "../Components/Menu";
 
 function Home() {
   const [text, setText] = useState();
@@ -122,9 +126,7 @@ function Home() {
       }}
     >
       <div className="App">
-        <div className="menu">
-          <span className="titleMenu">Postgen</span>
-        </div>
+        {/* <Menu/> */}
         <div className="contentView">
           <div className="leftSideView">
             <span className="topMessage" role="img" aria-label="festa">
@@ -144,7 +146,7 @@ function Home() {
                 value={contentFontSize}
                 min={10}
                 placeholder="Tamanho da fonte"
-                className="inputText"
+                className="inputText range"
                 onChange={(event) => {
                   setContentFontSize(event.target.value);
                 }}
@@ -194,7 +196,7 @@ function Home() {
                 type="range"
                 value={logoWidth}
                 placeholder="Sua logo"
-                className="inputText"
+                className="inputText range"
                 onChange={(event) => {
                   setLogoWidth(event.target.value);
                 }}
@@ -394,7 +396,7 @@ function Home() {
                 history.push({ pathname: "/render", data: values })
               }
             >
-              ⬇️ Renderizar Imagem
+              ⬇️  Renderizar Imagem
             </a>
           </div>
         </div>
