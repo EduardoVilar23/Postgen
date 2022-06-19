@@ -438,7 +438,7 @@ function Home() {
         <div className="credits">
           <span>
             Made with ❤️ by{" "}
-            <a href="https://postgen.eduardovilar.now.sh" className="website">
+            <a href="https://eduardovilar.com/" className="website">
               Eduardo Vilar
             </a>
           </span>
