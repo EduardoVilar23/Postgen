@@ -161,7 +161,7 @@ function Home() {
         <div className="contentView">
           <div className="leftSideView">
             <span className="topMessage" role="img" aria-label="festa">
-              🎉 Faça posts incríveis para suas redes sociais!
+              🎉 Imagens instantâneas
             </span>
             <form>
               <textarea
@@ -285,7 +285,7 @@ function Home() {
             </form>
           </div>
           <div className="previewView">
-            <span className="topMessage">Assim seu post ficará no final:</span>
+            <span className="topMessage">Pré-visualização:</span>
 
             <img
               alt="loadImage"
@@ -431,7 +431,7 @@ function Home() {
                 history.push({ pathname: "/render", data: values })
               }
             >
-              ⬇️  Renderizar Imagem
+              ⚡️  Renderizar Imagem
             </a>
           </div>
         </div>

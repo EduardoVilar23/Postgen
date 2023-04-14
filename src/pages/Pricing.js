@@ -16,13 +16,14 @@ const planos = [
   {
     id: 1,
     title: 'Pro',
-    price: '9,99',
+    price: '0,00',
     color: '#30D159',
     content: [
       'Número de renderizações ilimitado',
       'Todas as opções de fontes',
     ],
     buyed: false,
+    activated: true,
   }
 ]
 
@@ -62,13 +63,16 @@ export default function Pricing() {
         </div>
         <div className="buyBtn" style={{backgroundColor: item.buyed ? '#8E8E93' : '#30D159'}}>
           <span style={{fontSize: '15pt'}}>
-          {
-            item.buyed ?
-            'Comprado' :
-            <>
-            Comprar
-            </>
-          }
+            {
+              item.activated ?
+              'Ativo para todos'
+              :
+                item.buyed ?
+                'Comprado' :
+                <>
+                Comprar
+                </>
+            }
           </span>
         </div>
       </div>
