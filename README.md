@@ -5,6 +5,8 @@
 - Projeto iniciado em 3 de setembro de 2020
 - Até o atual momento, a ferramenta apresenta problemas de desempenho no Google Chrome, e funciona estavelmente no Safari(V.13.1.2)
 - O site usa uma biblioteca para gerar as imagem a partir do código. Possui alguns erros durantes algumas renderizações.
+
+- Atualização: Talvez eu volte qualquer dia desses pra fazer tudo do zero.
 # Live view ✨
 
 [Clique aqui para abrir o site 🎉](http://postgen.now.sh/)
